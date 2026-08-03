@@ -390,13 +390,13 @@ def validate_config():
 
     # Required credentials
     if not TELEGRAM_BOT_TOKEN:
-    errors.append("❌ TELEGRAM_BOT_TOKEN not configured! Get token from @BotFather")
+        errors.append("❌ TELEGRAM_BOT_TOKEN not configured! Get token from @BotFather")
 
     if not TELEGRAM_CHAT_ID:
-    errors.append("❌ TELEGRAM_CHAT_ID not configured! Get ID from @userinfobot")
+        errors.append("❌ TELEGRAM_CHAT_ID not configured! Get ID from @userinfobot")
 
     if not PORTALS_AUTH_TOKEN:
-    errors.append("❌ PORTALS_AUTH_TOKEN not configured! See instructions in config.py")
+        errors.append("❌ PORTALS_AUTH_TOKEN not configured! See instructions in config.py")
 
     # Sanity checks
     if MIN_PROFIT_PERCENT < 0:
