@@ -389,14 +389,14 @@ def validate_config():
     errors = []
 
     # Required credentials
-    if TELEGRAM_BOT_TOKEN == "YOUR_BOT_TOKEN_HERE":
-        errors.append("❌ TELEGRAM_BOT_TOKEN not configured! Get token from @BotFather")
+    if not TELEGRAM_BOT_TOKEN:
+    errors.append("❌ TELEGRAM_BOT_TOKEN not configured! Get token from @BotFather")
 
-    if TELEGRAM_CHAT_ID == "YOUR_CHAT_ID_HERE":
-        errors.append("❌ TELEGRAM_CHAT_ID not configured! Get ID from @userinfobot")
+    if not TELEGRAM_CHAT_ID:
+    errors.append("❌ TELEGRAM_CHAT_ID not configured! Get ID from @userinfobot")
 
-    if PORTALS_AUTH_TOKEN == "YOUR_PORTALS_AUTH_TOKEN_HERE":
-        errors.append("❌ PORTALS_AUTH_TOKEN not configured! See instructions in config.py")
+    if not PORTALS_AUTH_TOKEN:
+    errors.append("❌ PORTALS_AUTH_TOKEN not configured! See instructions in config.py")
 
     # Sanity checks
     if MIN_PROFIT_PERCENT < 0:
@@ -432,7 +432,7 @@ def validate_config():
     print("\n" + "="*60)
     print("✅ CONFIGURATION VALIDATED")
     print("="*60)
-    print(f"  • Telegram Bot: {TELEGRAM_BOT_TOKEN[:10]}...")
+    print(f"  • Telegram Bot: {TELEGRAM_BOT_TOKEN[:10] if TELEGRAM_BOT_TOKEN else 'NOT SET'}...")
     print(f"  • Chat ID: {TELEGRAM_CHAT_ID}")
     print(f"  • Min Profit: {MIN_PROFIT_PERCENT}%")
     print(f"  • Max Price: {MAX_PRICE_TON} TON")
