@@ -15,7 +15,6 @@
 # 🔐 SECRETS & CREDENTIALS (NEVER COMMIT!)
 # ============================================================================
 # Configuration files with API keys and tokens
-config.py
 secrets.py
 credentials.json
 
@@ -347,7 +346,6 @@ start_bot.bat
 
 # Local development folder
 aportalsmp/
-config.py
 venv/
 __pycache__/
 *.log
