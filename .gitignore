@@ -347,3 +347,8 @@ start_bot.bat
 
 # Local development folder
 aportalsmp/
+config.py
+venv/
+__pycache__/
+*.log
+*.db
