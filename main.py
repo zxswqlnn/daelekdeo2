@@ -574,14 +574,6 @@ class NFTGiftBot:
 
         # Start Telegram bot polling
         polling_task = asyncio.create_task(self.notifier.start_polling())
-        await asyncio.sleep(1)
-
-await self.notifier.send_status_update(
-    "🚀 NFT Gift Bot Started",
-    f"Monitoring Portals marketplace\n"
-    f"Min profit: {config.MIN_PROFIT_PERCENT}%\n"
-    f"Max price: {config.MAX_PRICE_TON} TON"
-)
         cycle = 0
 
         try:
