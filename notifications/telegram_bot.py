@@ -390,9 +390,7 @@ class TelegramNotifier:
         _, _, symbol = self._extract_attributes(gift.attributes)
         symbol_str = symbol or "Unknown"
 
-        return f"""🚨 <b>Gifts Intelligence</b>
-
-🎁 <b><a href="{telegram_gift_url}">{gift.name} #{gift.number}</a></b>
+        return f"""🎁 <b><a href="{telegram_gift_url}">{gift.name} #{gift.number}</a></b>
 
 ✨ <b>Model:</b> {model_str}
 🎨 <b>Backdrop:</b> {backdrop_str}
