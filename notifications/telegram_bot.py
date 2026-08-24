@@ -384,63 +384,63 @@ class TelegramNotifier:
             - <code>text</code> for monospace
             - <i>text</i> for italic
         """
-        # Build attribute line
         model_str = model or "Unknown"
         backdrop_str = backdrop or "Unknown"
 
-        if special_type:
-            attributes = f"{special_type} {model_str} + {backdrop_str}"
-        else:
-            attributes = f"{model_str} + {backdrop_str}"
+        _, _, symbol = self._extract_attributes(gift.attributes)
+        symbol_str = symbol or "Unknown"
 
-        # Format message with clear sections
-        return f"""<b>🎯 PROFIT OPPORTUNITY</b>
+        return f"""🚨 <b>Gifts Intelligence</b>
 
-<b>📦 {gift.name}</b>
-{attributes}
+🎁 <b>{gift.name} #{gift.number}</b>
 
-💰 <b>Price:</b> {gift.price:.2f} TON (${buy_usd:.2f})
-🎯 <b>Target:</b> {analysis.target_price:.2f} TON (${target_usd:.2f})
-💎 <b>Net Profit:</b> {analysis.profit_ton:.2f} TON (${profit_usd:.2f})
-📈 <b>ROI:</b> {analysis.profit_percent:.1f}%
-🔥 <b>Strategy:</b> {analysis.strategy}
-⭐ <b>Confidence:</b> {analysis.confidence:.0%}{sales_info}
+✨ <b>Model:</b> {model_str}
+🎨 <b>Backdrop:</b> {backdrop_str}
+🔹 <b>Symbol:</b> {symbol_str}
 
-<b>ID:</b> <code>{gift.id}</code>"""
+💰 <b>Buy:</b> {gift.price:.2f} TON
+🎯 <b>Target:</b> {analysis.target_price:.2f} TON
+
+💎 <b>Profit:</b> +{analysis.profit_ton:.2f} TON
+📈 <b>ROI:</b> +{analysis.profit_percent:.1f}%
+
+⚡ <b>{analysis.strategy}</b>"""
 
     def _create_opportunity_keyboard(self, gift: Gift) -> InlineKeyboardMarkup:
-        """
-        Create inline keyboard with NFT action buttons.
+        # Ссылка на покупку конкретного подарка в Portals
+        portals_url = (
+            f"https://t.me/portals/market?"
+            f"startapp=gift_{gift.id}_gkal9v"
+        )
 
-        Buttons:
-        1. Open on Portals - Deep link to NFT in Portals app
-        2. Copy Mint # - Callback to show mint number
+        # Telegram collectible gift:
+        # "Whip Cupcake" -> "WhipCupcake"
+        telegram_gift_name = "".join(
+            char for char in gift.name
+            if char.isalnum()
+        )
 
-        Args:
-            gift: Gift object with ID and mint number
+        telegram_gift_url = (
+            f"https://t.me/nft/"
+            f"{telegram_gift_name}-{gift.number}"
+        )
 
-        Returns:
-            InlineKeyboardMarkup with action buttons
-
-        Example:
-            keyboard = self._create_opportunity_keyboard(gift)
-            # Creates:
-            # [🔗 Open on Portals]
-            # [📋 Copy Mint #]
-        """
-        # Portals deep link format
-        nft_url = f"https://t.me/portals/market?startapp=gift_{gift.id}_gkal9v"
-
-        return InlineKeyboardMarkup(inline_keyboard=[
-            [InlineKeyboardButton(
-                text="🔗 Open on Portals",
-                url=nft_url
-            )],
-            [InlineKeyboardButton(
-                text="📋 Copy Mint #",
-                callback_data=f"copy_mint:{gift.number}"
-            )]
-        ])
+        return InlineKeyboardMarkup(
+            inline_keyboard=[
+                [
+                    InlineKeyboardButton(
+                        text="🎁 Посмотреть подарок",
+                        url=telegram_gift_url,
+                    )
+                ],
+                [
+                    InlineKeyboardButton(
+                        text="⚡ Купить на Portals",
+                        url=portals_url,
+                    )
+                ],
+            ]
+        )
 
     # ========================================================================
     # CALLBACK HANDLERS
