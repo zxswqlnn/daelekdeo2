@@ -392,7 +392,7 @@ class TelegramNotifier:
 
         return f"""🚨 <b>Gifts Intelligence</b>
 
-🎁 <b>{gift.name} #{gift.number}</b>
+🎁 <b><a href="{telegram_gift_url}">{gift.name} #{gift.number}</a></b>
 
 ✨ <b>Model:</b> {model_str}
 🎨 <b>Backdrop:</b> {backdrop_str}
