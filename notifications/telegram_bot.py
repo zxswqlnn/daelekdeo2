@@ -390,6 +390,16 @@ class TelegramNotifier:
         _, _, symbol = self._extract_attributes(gift.attributes)
         symbol_str = symbol or "Unknown"
 
+        telegram_gift_name = "".join(
+            char for char in gift.name
+            if char.isalnum()
+        )
+
+        telegram_gift_url = (
+            f"https://t.me/nft/"
+            f"{telegram_gift_name}-{gift.number}"
+        )
+
         return f"""🎁 <b><a href="{telegram_gift_url}">{gift.name} #{gift.number}</a></b>
 
 ✨ <b>Model:</b> {model_str}
