@@ -2,7 +2,7 @@
 Profit analysis module for NFT Gift Bot.
 
 This module contains algorithms for analyzing NFT pricing
-and calculating potential profit opportunities.
+and calculating potential profit opportunities.z
 """
 
 from .profit_analyzer import ProfitAnalyzer
